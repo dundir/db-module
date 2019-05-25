@@ -1,4 +1,4 @@
-from db import ConnectionManager,SessionManager
+from core import ConnectionManager,SessionManager
 import models
 
 #Setup Connection to DB

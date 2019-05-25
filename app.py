@@ -1,17 +1,27 @@
-import db
 #import models
+from db import ConnectionManager,SessionManager
+import models
 
-a = db.data('temp.db')
-a.connect()
-a.session()
+#Setup Connection to DB
+conn = ConnectionManager()
 
-query = a.session.query(db.models.Customers).all()
+#connect('dbname = thedb', defaults temp.db)
+conn.connect()
 
-#c1 = Customers(name = 'Ravi Kumar', address = 'Station Road', email = 'blah@email.com')
-#session.add(c1)
-#session.commit()
+#Create Session, pass connection
+session=SessionManager(conn).session
 
-#q = session.query(Customers).all()
-# Iterates over all Customer Records
-for row in query:
+#Query tablename customers - select *
+def query():
+   query = session.query(models.Customers).all()
+   return query
+
+def addData():
+  data = Customers(name = 'Ravi Kumar', address = 'Station Road', email = 'blah@email.com')
+  session.add(data)
+  session.commit()
+  return
+
+def printq():
+  for row in query():
     print ("id: ",row.id, "Name: ",row.name, "Address:",row.address, "Email:",row.email)

@@ -1,11 +1,10 @@
 from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
-Base = declarative_base()
-import models
+#from sqlalchemy.ext.declarative import declarative_base
+from models import Base
 from sqlalchemy.orm import sessionmaker
 
 
-class data:
+class ConnectionManager:
   ''' Variables
       self.dbname
       self.engine
@@ -19,6 +18,9 @@ class data:
       print('Connecting to: ' + 'sqlite:///' + self.dbname)
       Base.metadata.create_all(self.engine)
 
-  def session(self):
-      Session = sessionmaker(bind = self.engine)
-      self.session = Session()
+
+class SessionManager():
+    def __init__(self,ConnectionManager):
+        Session = sessionmaker(bind=ConnectionManager.engine)
+        self.session = Session()
+        

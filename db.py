@@ -8,7 +8,6 @@ class ConnectionManager:
   ''' Variables
       self.dbname
       self.engine
-      self.session
   '''
   def __init__(self,dbname = 'temp.db'):
       self.engine = create_engine('sqlite:///' + dbname, echo = True)
@@ -23,4 +22,3 @@ class SessionManager():
     def __init__(self,ConnectionManager):
         Session = sessionmaker(bind=ConnectionManager.engine)
         self.session = Session()
-        

@@ -1,4 +1,3 @@
-#import models
 from db import ConnectionManager,SessionManager
 import models
 
@@ -17,7 +16,7 @@ def query():
    return query
 
 def addData():
-  data = Customers(name = 'Ravi Kumar', address = 'Station Road', email = 'blah@email.com')
+  data = models.Customers(name = 'Ravi Kumar', address = 'Station Road', email = 'blah@email.com')
   session.add(data)
   session.commit()
   return
